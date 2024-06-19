@@ -58,6 +58,24 @@ Le pipeline CI/CD utilise GitHub Actions pour :
 
 - Construire l'image Docker
 - Pousser l'image sur Docker Hub
+
+## Déploiement et exposer l' application sur un cluster Kubernetes de GCP
+
+Création du compte sur GCP
+Création du projet sur GCP
+Création du cluster sur GCP avec autopilot
+Configuration de Kubectl pour utiliser le cluster GKE
+Déploiement manuel via le fichier deployment.yaml et service.yaml via l'outil kubectl
+deployment.yaml telecharge l'image Docker depuis docker Hub dans le cluster KS8
+ - kubectl apply -f deployment.yaml
+ - kubectl apply -f service.yaml
+
+## Déploiement CI/CD avec GitHub Actions
+
+Le pipeline CI/CD utilise GitHub Actions pour :
+
+- Construire l'image Docker
+- Pousser l'image sur Docker Hub
 - Déployer l'image sur un cluster Kubernetes
 
 ## Fichier `Dockerfile`
