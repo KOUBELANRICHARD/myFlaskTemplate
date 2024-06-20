@@ -22,22 +22,18 @@ MYFLASKTEMPLATE/
 
 ## Installation
 
-1. Cloner le repository :
-    ```sh
-    git clone <URL_de_votre_repository_github>
-    cd MYFLASKTEMPLATE
-    ```
 
-2. Créer un environnement virtuel et installer les dépendances :
+
+1. Créer un environnement virtuel et installer les dépendances :
     ```sh
-    python -m venv venv
-    source venv/bin/activate  
+    python -m venv .venv
+    source .venv/bin/activate  
     pip install -r requirements.txt
     ```
 
-3. Lancer l'application :
+2. Lancer l'application :
     ```sh
-    python app/app.py
+    flask --app /app.py run
     ```
 
 ## Conteneurisation avec Docker
@@ -64,7 +60,7 @@ Le pipeline CI/CD utilise GitHub Actions pour :
 Création du compte sur GCP
 Création du projet sur GCP
 Création du cluster sur GCP avec autopilot
-Configuration de Kubectl pour utiliser le cluster GKE
+Configuration de Kubectl pour utiliser le cluster GKE avec utilisation de google SDK
 Déploiement manuel via le fichier deployment.yaml et service.yaml via l'outil kubectl
 deployment.yaml telecharge l'image Docker depuis docker Hub dans le cluster KS8
  - kubectl apply -f deployment.yaml
