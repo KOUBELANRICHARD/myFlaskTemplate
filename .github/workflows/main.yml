@@ -29,29 +29,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Decode GCP service account key
-      run: echo "${{ secrets.GKE_SA_KEY }}" | base64 --decode > gcp-key.json
+      - name: Decode GCP service account key
+        run: echo "${{ secrets.GKE_SA_KEY }}" | base64 --decode > gcp-key.json
         
-    - name: Load the content properly formatted in an environment variable
-      run: |
-        echo "SA_KEY=$(jq -c . < gcp-key.json)" >> $GITHUB_ENV
+      - name: Load the content properly formatted in an environment variable
+        run: |
+          echo "SA_KEY=$(jq -c . < gcp-key.json)" >> $GITHUB_ENV
+          
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ env.SA_KEY }}
 
-    - name: Authenticate to Google Cloud
-      uses: google-github-actions/auth@v2
-      with:
-        credentials_json: ${{ env.SA_KEY }}
+      - name: Get GKE credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: cluster-myflasktemplate
+          project_id: ${{ secrets.GKE_PROJECT }}
+          location: us-central1
 
-    - name: Get the GKE credentials so we can deploy to the cluster
-      uses: google-github-actions/get-gke-credentials@v2
-      with:
-        cluster_name: cluster-myflasktemplate
-        project_id: ${{ secrets.GKE_PROJECT }}
-        location: us-central1
-
-    - name: Deploy to GKE
-      run: |
-        kubectl apply -f deployment.yaml
-        kubectl apply -f service.yaml
+      - name: Deploy to GKE
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
