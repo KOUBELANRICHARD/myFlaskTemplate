@@ -47,7 +47,7 @@ jobs:
        # Get the GKE credentials so we can deploy to the cluster
       - uses: google-github-actions/get-gke-credentials@v2
         with:
-          cluster_name: myportofolio-cluster
+          cluster_name: cluster-myflasktemplate
           project_id: ${{ secrets.GKE_PROJECT }}
           location: us-central1
 
