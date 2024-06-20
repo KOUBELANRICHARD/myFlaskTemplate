@@ -22,7 +22,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}myflasktemplateimg:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/myflasktemplateimg:latest
 
   deploy:
     needs: build
