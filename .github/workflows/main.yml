@@ -23,3 +23,23 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/myflasktemplateimg:latest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      # Setup gcloud CLI
+      - name: Setup gcloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          project_id: ${{ secrets.GKE_PROJECT }}
+
+      - name: Configure kubectl
+        run: gcloud container clusters get-credentials cluster-myflasktemplate --zone us-central1 
+
+      - name: Deploy to GKE
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
