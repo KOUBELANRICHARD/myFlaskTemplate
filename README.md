@@ -66,8 +66,10 @@ Le pipeline CI/CD utilise GitHub Actions pour :
     - Se connecter via cloud shell au cluster 
     - Créer le fichier deployement.yaml et service.yaml avec nano
     - Ensuite exécuter les fichiers avec kubectl avec les commandes suivantes : 
-        - kubectl apply -f deployment.yaml
-        - kubectl apply -f service.yaml
+        ```sh
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
+        ```
 
     ### Déploiement manuel via kubectl
 
