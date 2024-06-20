@@ -76,8 +76,10 @@ Le pipeline CI/CD utilise GitHub Actions pour :
     - Configuration de Kubectl pour utiliser le cluster GKE avec utilisation de google SDK
     - Déploiement manuel via le fichier deployment.yaml et service.yaml via l'outil kubectl
     - deployment.yaml telecharge l'image Docker depuis docker Hub dans le cluster KS8
-        - kubectl apply -f deployment.yaml
-        - kubectl apply -f service.yaml
+        ```sh
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
+        ```
 
 ## Déploiement CI/CD avec GitHub Actions
 
