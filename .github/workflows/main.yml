@@ -22,7 +22,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/myflasktemplateimg:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/myflasktemplateimg:${{ github.sha }}
 
   deploy:
     needs: build
@@ -50,6 +50,11 @@ jobs:
           cluster_name: cluster-myflasktemplate
           project_id: ${{ secrets.GKE_PROJECT }}
           location: us-central1
+
+      - name: Update deployment manifest
+        run: |
+          sed -i 's|koubelan/myflasktemplateimg:.*|koubelan/myflasktemplateimg:${{ github.sha }}|g' k8S/deployment.yaml
+  
 
       - name: Deploy to GKE
         run: |
