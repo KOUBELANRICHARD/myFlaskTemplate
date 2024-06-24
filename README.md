@@ -5,7 +5,7 @@
 Ce projet est une application web créée avec le framework Python Flask et intégrant un template de base Bootstrap. L'objectif est de démontrer comment construire une application Flask, la conteneuriser avec Docker, puis déployer le conteneur sur un cluster Kubernetes via un pipeline CI/CD utilisant GitHub Actions.
 
 ## Structure du projet
-
+```sh
 MYFLASKTEMPLATE/
 │
 ├── app/
@@ -21,7 +21,7 @@ MYFLASKTEMPLATE/
 └── .github/
 └── workflows/
 └── main.yml
-
+```
 
 ## Installation
 
